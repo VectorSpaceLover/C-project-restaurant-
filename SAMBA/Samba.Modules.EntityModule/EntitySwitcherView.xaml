@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="Samba.Modules.EntityModule.EntitySwitcherView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:FxButton="clr-namespace:FlexButton;assembly=FlexButton" xmlns:Common="clr-namespace:Samba.Presentation.Common;assembly=Samba.Presentation.Common" xmlns:cal="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <!--<Grid Margin="30, 0">-->
+    <Grid>
+      <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <!--<RowDefinition Height="9*"/>-->
+        </Grid.RowDefinitions>
+    <Border Background="Black" Margin="25, 25, 25, 0" BorderThickness="0" BorderBrush="#59000000" CornerRadius="0">
+
+        </Border>
+        <ItemsControl Margin="40, 40, 40, 0" ItemsSource="{Binding EntitySwitcherButtons}" Background="Transparent" Name="EntitySwitcherButtonsItemsControl">
+            <!--<ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <FxButton:FlexButton Margin="2,2,2,0" FontSize="35" Content="{Binding Caption}" Focusable="False"
+                              Command="{Binding DataContext.SelectEntityCategoryCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                              CommandParameter="{Binding Model}" ButtonColor="{Binding ButtonColor,Converter={StaticResource NullBrushConverter}}">
+                    <FxButton:FlexButton Margin="16,0" FontSize="35" Content="{Binding Caption}" Focusable="False" Padding="0, 20"
+                                        Command="{Binding DataContext.SelectEntityCategoryCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                                        CommandParameter="{Binding Model}" ButtonColor="#1270ce">
+                    </FxButton:FlexButton>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>-->
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <Button Name="btn" Margin="10" 
+                  Command="{Binding DataContext.SelectEntityCategoryCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}" 
+                  CommandParameter="{Binding Model}">
+            <Button.Style>
+              <Style TargetType="{x:Type Button}">
+                <Setter Property="Template">
+                  <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                      <Grid x:Name="ContentGrid">
+                        <Border BorderBrush="#270C0C" BorderThickness="5" CornerRadius="0">
+                          <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                              <GradientStop Color="#FF1497EC" Offset="0" />
+                              <GradientStop Color="#FF126FCD" Offset="1" />
+                            </LinearGradientBrush>
+                          </Border.Background>
+                        </Border>
+                        <Border Margin="5" BorderThickness="0" CornerRadius="0" Background="Transparent">
+                          <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                              <GradientStop Color="#69D1D1D1" Offset="0" />
+                              <GradientStop Color="#FFBABABA" Offset="1" />
+                            </LinearGradientBrush>
+                          </Border.BorderBrush>
+                        </Border>
+                        <Grid>
+                          <Grid.RowDefinitions>
+                            <RowDefinition Height="10*"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="45*"/>
+                          </Grid.RowDefinitions>
+                          <Viewbox StretchDirection="DownOnly" Grid.Row="2" MinHeight="20" Margin="15,5" Name="textbox">
+                            <TextBlock Foreground="#BDF5F5F5" FontSize="40" FontWeight="Bold" Text="{Binding Caption}">
+                              <TextBlock.Effect>
+                                <DropShadowEffect ShadowDepth="2" BlurRadius="3" Opacity="0.5" />
+                              </TextBlock.Effect>
+                            </TextBlock>
+                          </Viewbox>
+                          <Image Grid.Row="1" Source="{Binding Model.BackgroundImage}" Stretch="Uniform" StretchDirection="DownOnly">
+                            <Image.Effect>
+                              <DropShadowEffect ShadowDepth="1" BlurRadius="2" Opacity="0.5" />
+                            </Image.Effect>
+                          </Image>
+
+                        </Grid>
+                      </Grid>
+                      <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                          <Setter TargetName="textbox" Property="Margin" Value="20"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                          <Setter Property="Opacity" Value="0.4"/>
+                        </Trigger>
+                      </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                  </Setter.Value>
+                </Setter>
+              </Style>
+            </Button.Style>
+          </Button>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+      <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="1" Columns="4"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <!--<TabControl cal:RegionManager.RegionName="{x:Static Common:RegionNames.EntityScreenRegion}"
+                    Grid.Row="1"
+                    FocusVisualStyle="{x:Null}"
+                    Background="Yellow"
+                    BorderThickness="0"
+                    Margin="0" Padding="0">
+            <TabControl.ItemContainerStyle>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </Style>
+            </TabControl.ItemContainerStyle>
+        </TabControl>-->
+    </Grid>
+</UserControl>
